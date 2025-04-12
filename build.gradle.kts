@@ -44,8 +44,8 @@ afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("release") {
-                from(components["release"]) // <- это работает только после evaluate
-                groupId = "com.example.chat_library"
+                from(components["release"])
+                groupId = "com.github.xydownik"
                 artifactId = "chat"
                 version = "1.0.0"
             }
