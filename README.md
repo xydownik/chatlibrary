@@ -33,3 +33,7 @@ import com.example.chat_library.ChatLauncher
    ....
    ChatLauncher.start(this, username = "YourName")
 ```
+5. Демонстрационный проект:
+```shell
+https://github.com/xydownik/ChatApp
+```
