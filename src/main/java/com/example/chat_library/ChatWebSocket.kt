@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
+import okio.ByteString
 
 class ChatWebSocket(
     private val onMessageReceived: (String, Boolean) -> Unit
@@ -18,7 +19,16 @@ class ChatWebSocket(
 
         webSocket = client.newWebSocket(request, object : WebSocketListener() {
             override fun onMessage(webSocket: WebSocket, text: String) {
-                onMessageReceived(text, false)
+                if (text == "203 = 0xcb") {
+                    onMessageReceived("📩 Special message on 203", false)
+                } else {
+                    onMessageReceived(text, false)
+                }
+            }
+
+            override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
+                val text = bytes.utf8()
+                onMessage(webSocket, text)
             }
         })
     }

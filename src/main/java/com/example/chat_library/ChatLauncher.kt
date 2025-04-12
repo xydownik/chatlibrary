@@ -1,23 +1,15 @@
 package com.example.chat_library
 
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.runtime.mutableStateListOf
 
 object ChatLauncher {
 
-    fun launchChat(activity: ComponentActivity, username: String) {
-        val messageList = mutableStateListOf<ChatMessage>()
-
-        activity.setContent {
-            ChatScreen(
-                username = username,
-                messages = messageList
-            ) { newText ->
-                messageList.add(ChatMessage(sender = username, message = newText))
-            }
+    fun start(context: Context, username: String) {
+        val intent = Intent(context, ChatActivity::class.java).apply {
+            putExtra("username", username)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
+        context.startActivity(intent)
     }
 }
