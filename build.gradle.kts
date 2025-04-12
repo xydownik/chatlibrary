@@ -47,7 +47,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.xydownik"
                 artifactId = "chat"
-                version = "1.0.1"
+                version = "1.0.2"
             }
         }
         repositories {
